@@ -1,6 +1,7 @@
 package com.waa.lab1.controller;
 
 import com.waa.lab1.domain.Post;
+import com.waa.lab1.domain.PostV2;
 import com.waa.lab1.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,22 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> findAll(){
+    public ResponseEntity<List<?>> findAll(@RequestHeader(name = "X-API-VERSION-2",required = false,defaultValue = "false") Boolean header){
+        if(header){
+            System.out.println("Providing data from DTO");
+            return new ResponseEntity<>(postService.fetchAllDto(),HttpStatus.OK);
+        }
         return new ResponseEntity<>(postService.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<?>> filterByAuthor(@RequestHeader(name = "X-API-VERSION-2",required = false,
+            defaultValue = "false") Boolean header,@RequestParam(name = "query") String query){
+        if(header){
+            System.out.println("Providing data from DTO");
+            return new ResponseEntity<>(postService.filterByAuthorDto(query),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(postService.filterByAuthor(query), HttpStatus.OK);
     }
 
     @PostMapping
