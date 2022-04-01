@@ -41,7 +41,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}/posts")
-    public ResponseEntity<List<UserDto>> findAllUsersHavingPostsGreaterThan(@PathVariable("id") Long id,@RequestParam(name = "count") int count){
-        return new ResponseEntity<>(userService.findAllByIdAndPostsGreaterThan(id,count),HttpStatus.OK);
+    public ResponseEntity<List<Post>> findAllPostsByUserId(@PathVariable("id") Long id){
+        return new ResponseEntity<>(userService.findAllPostsByUserId(id),HttpStatus.OK);
+    }
+
+    // Optional
+    @GetMapping("/posts")
+    public ResponseEntity<List<UserDto>> findAllUsersHavingPostsGreaterThan(@RequestParam(name = "count") int count){
+        return new ResponseEntity<>(userService.findAllUsersHavingPostsGreaterThan(count),HttpStatus.OK);
     }
 }

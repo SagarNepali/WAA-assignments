@@ -1,5 +1,6 @@
 package com.waa.lab2.user.service;
 
+import com.waa.lab2.post.domain.Post;
 import com.waa.lab2.user.domain.User;
 import com.waa.lab2.user.domain.dto.UserDto;
 
@@ -13,5 +14,7 @@ public interface UserService {
     void save(UserDto user);
     void update(Long id,UserDto user);
     void delete(Long id);
-    List<UserDto> findAllByIdAndPostsGreaterThan(Long id,int val);
+    List<Post> findAllPostsByUserId(Long id);
+    List<UserDto> findAllUsersHavingPostsGreaterThan(int val);
+
 }

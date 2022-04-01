@@ -49,11 +49,16 @@ public class UserServiceImpl implements  UserService{
     }
 
     @Override
-    public List<UserDto> findAllByIdAndPostsGreaterThan(Long id, int val) {
-        return userRepository.findAllByIdAndPostsGreaterThan(id, val)
+    public List<UserDto> findAllUsersHavingPostsGreaterThan(int val) {
+        return userRepository.findAllUsersHavingPostsGreaterThan(val)
                 .stream()
                 .map(users -> modelMapper.map(users,UserDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Post> findAllPostsByUserId(Long id) {
+        return userRepository.findById(id).get().getPosts();
     }
 
 }
