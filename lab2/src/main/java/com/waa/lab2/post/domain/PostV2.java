@@ -1,4 +1,4 @@
-package com.waa.lab2.domain;
+package com.waa.lab2.post.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

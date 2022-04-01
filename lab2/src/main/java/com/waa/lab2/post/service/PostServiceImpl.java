@@ -1,8 +1,8 @@
-package com.waa.lab2.service;
+package com.waa.lab2.post.service;
 
-import com.waa.lab2.domain.Post;
-import com.waa.lab2.domain.PostV2;
-import com.waa.lab2.repository.PostRepository;
+import com.waa.lab2.post.domain.Post;
+import com.waa.lab2.post.domain.PostV2;
+import com.waa.lab2.post.repository.PostRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

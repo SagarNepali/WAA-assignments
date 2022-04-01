@@ -1,6 +1,6 @@
-package com.waa.lab2.repository;
+package com.waa.lab2.post.repository;
 
-import com.waa.lab2.domain.Post;
+import com.waa.lab2.post.domain.Post;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

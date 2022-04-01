@@ -1,7 +1,7 @@
-package com.waa.lab2.service;
+package com.waa.lab1.service;
 
-import com.waa.lab2.domain.Post;
-import com.waa.lab2.domain.PostV2;
+import com.waa.lab1.domain.Post;
+import com.waa.lab1.domain.PostV2;
 
 import java.util.List;
 

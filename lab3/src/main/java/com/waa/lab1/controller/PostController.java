@@ -1,7 +1,8 @@
-package com.waa.lab2.controller;
+package com.waa.lab1.controller;
 
-import com.waa.lab2.domain.Post;
-import com.waa.lab2.service.PostService;
+import com.waa.lab1.domain.Post;
+import com.waa.lab1.domain.PostV2;
+import com.waa.lab1.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
