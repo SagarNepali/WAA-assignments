@@ -11,7 +11,7 @@ public interface UserService {
 
     List<UserDto> findAll();
     UserDto getById(Long id);
-    void save(UserDto user);
+    void save(User user);
     void update(Long id,UserDto user);
     void delete(Long id);
     List<Post> findAllPostsByUserId(Long id);

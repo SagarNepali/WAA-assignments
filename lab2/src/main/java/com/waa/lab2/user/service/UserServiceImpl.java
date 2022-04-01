@@ -34,8 +34,8 @@ public class UserServiceImpl implements  UserService{
     }
 
     @Override
-    public void save(UserDto user) {
-        userRepository.save(modelMapper.map(user, User.class));
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override

@@ -31,7 +31,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody UserDto user){
+    public void save(@RequestBody User user){
         userService.save(user);
     }
 

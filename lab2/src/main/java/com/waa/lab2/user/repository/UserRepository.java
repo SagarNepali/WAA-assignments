@@ -15,7 +15,7 @@ public interface UserRepository extends CrudRepository<User,Long> {
     Optional<User> findById(Long id);
     User save(User user);
     void deleteById(Long id);
-    @Query(value = "SELECT u from User u where u.posts.size >= :count",nativeQuery = true)
+    @Query(value = "SELECT u from User u where u.posts.size >= :count")
     List<User> findAllUsersHavingPostsGreaterThan(int count);
 
 }
