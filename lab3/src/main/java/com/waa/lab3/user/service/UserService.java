@@ -1,5 +1,6 @@
 package com.waa.lab3.user.service;
 
+import com.waa.lab3.comment.domain.Comment;
 import com.waa.lab3.post.domain.Post;
 import com.waa.lab3.user.domain.User;
 import com.waa.lab3.user.domain.dto.UserDto;
@@ -16,6 +17,5 @@ public interface UserService {
     void delete(Long id);
     List<Post> findAllPostsByUserId(Long id);
     List<UserDto> findAllUsersHavingPostsGreaterThan(int val);
-//    UserPostCommentDto findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
-    User findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
+    Comment findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
 }

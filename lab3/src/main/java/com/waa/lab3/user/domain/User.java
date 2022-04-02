@@ -1,5 +1,6 @@
 package com.waa.lab3.user.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.waa.lab3.post.domain.Post;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
@@ -20,5 +21,6 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @Fetch(FetchMode.SUBSELECT)
+    @JsonManagedReference
     private List<Post> posts;
 }

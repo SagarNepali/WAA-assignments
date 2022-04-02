@@ -1,11 +1,10 @@
 package com.waa.lab3.comment.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.waa.lab3.post.domain.Post;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -15,4 +14,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @ManyToOne
+    @JsonBackReference
+    private Post post;
 }

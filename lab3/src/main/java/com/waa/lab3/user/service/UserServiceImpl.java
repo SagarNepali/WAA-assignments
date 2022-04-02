@@ -1,5 +1,6 @@
 package com.waa.lab3.user.service;
 
+import com.waa.lab3.comment.domain.Comment;
 import com.waa.lab3.post.domain.Post;
 import com.waa.lab3.user.domain.User;
 import com.waa.lab3.user.domain.dto.UserDto;
@@ -63,7 +64,7 @@ public class UserServiceImpl implements  UserService{
 //    }
 
     @Override
-    public User findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId) {
+    public Comment findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId) {
         return userRepository.findByUserIdAndPostIdAndCommentId(userId,postId,commentId);
     }
 

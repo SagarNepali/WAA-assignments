@@ -19,10 +19,12 @@ public interface UserRepository extends CrudRepository<User,Long> {
     @Query(value = "SELECT u from User u where u.posts.size > :count")
     List<User> findAllUsersHavingPostsGreaterThan(int count);
 
-    @Query(value = "SELECT * from users u " +
-            "RIGHT JOIN post p on u.id = p.user_id " +
-            "RIGHT JOIN comment c on c.post_id = p.id " +
-            "where u.id=:userId and p.id=:postId and c.id=:commentId",nativeQuery = true)
-    User findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
+    @Query(value = "SELECT c from Comment  c " +
+            " JOIN c.post p " +
+            " JOIN p.user u " +
+            " WHERE c.id=:commentId " +
+            " AND p.id=:postId " +
+            " AND u.id=:userId ")
+    Comment findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
 
 }

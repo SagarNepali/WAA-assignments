@@ -53,16 +53,8 @@ public class UserController {
         return new ResponseEntity<>(userService.findAllUsersHavingPostsGreaterThan(count),HttpStatus.OK);
     }
 
-//    @GetMapping("/{userId}/posts/{postId}/comments/{commentId}")
-//    public ResponseEntity<UserPostCommentDto> getComment(@PathVariable(name = "userId") Long userId,
-//                                                         @PathVariable(name = "postId") Long postId,
-//                                                         @PathVariable(name = "commentId") Long commentId
-//                                              ){
-//        return new ResponseEntity<>(userService.findByUserIdAndPostIdAndCommentId(userId,postId,commentId),HttpStatus.OK);
-//    }
-
     @GetMapping("/{userId}/posts/{postId}/comments/{commentId}")
-    public ResponseEntity<User> getComment(@PathVariable(name = "userId") Long userId,
+    public ResponseEntity<Comment> getComment(@PathVariable(name = "userId") Long userId,
                                                          @PathVariable(name = "postId") Long postId,
                                                          @PathVariable(name = "commentId") Long commentId
     ){
