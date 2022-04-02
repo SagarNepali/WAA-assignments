@@ -1,6 +1,7 @@
 package com.waa.lab4.user.service;
 
 import com.waa.lab4.comment.domain.Comment;
+import com.waa.lab4.logger.aspect.annotation.ExecutionTime;
 import com.waa.lab4.post.domain.Post;
 import com.waa.lab4.user.domain.User;
 import com.waa.lab4.user.domain.dto.UserDto;
@@ -30,6 +31,7 @@ public class UserServiceImpl implements  UserService{
     }
 
     @Override
+    @ExecutionTime
     public UserDto getById(Long id) {
         return modelMapper.map(userRepository.findById(id).orElse(null),UserDto.class);
     }
