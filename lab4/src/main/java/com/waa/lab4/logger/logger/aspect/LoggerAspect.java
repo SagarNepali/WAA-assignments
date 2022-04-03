@@ -1,7 +1,7 @@
-package com.waa.lab4.logger.aspect;
+package com.waa.lab4.logger.logger.aspect;
 
-import com.waa.lab4.logger.domain.Logger;
-import com.waa.lab4.logger.service.LoggerService;
+import com.waa.lab4.logger.logger.domain.Logger;
+import com.waa.lab4.logger.logger.service.LoggerService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -19,7 +19,7 @@ public class LoggerAspect {
     private LoggerService loggerService;
 
 
-    @Pointcut("@annotation(com.waa.lab4.logger.aspect.annotation.ExecutionTime)")
+    @Pointcut("@annotation(com.waa.lab4.logger.logger.aspect.annotation.ExecutionTime)")
     public void logExecutionTime(){}
 
     @Pointcut("execution(* com.waa.lab4.comment.service.CommentServiceImpl.*())")
@@ -32,7 +32,7 @@ public class LoggerAspect {
     public void logPostService(){}
 
     @After("logCommentService() || logUserService() || logPostService()")
-    public void logAfterDBUse(JoinPoint joinPoint){
+    public void logAfterDBUse(JoinPoint joinPoint) throws Exception {
         Logger logger = new Logger()
                 .builder()
                 .operation(joinPoint.getTarget().getClass().getSimpleName()+" -> "+ joinPoint.getSignature().getName())
@@ -48,7 +48,7 @@ public class LoggerAspect {
         Object proceed = proceedingJoinPoint.proceed();
         long timerEnd = System.currentTimeMillis();
         System.out.println("Execution time for "+proceedingJoinPoint.getTarget().getClass().getSimpleName()
-        +" -> "+proceedingJoinPoint.getSignature().getName()+" method is: "+((timerEnd-timerStart)/60)+" second(s)");
+        +" -> "+proceedingJoinPoint.getSignature().getName()+" method is: "+(timerEnd-timerStart)+" ms");
         return proceed;
     }
 }

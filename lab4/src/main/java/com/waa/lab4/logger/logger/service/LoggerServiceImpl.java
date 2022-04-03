@@ -1,13 +1,12 @@
-package com.waa.lab4.logger.service;
+package com.waa.lab4.logger.logger.service;
 
-import com.waa.lab4.logger.domain.Logger;
-import com.waa.lab4.logger.repository.LoggerRepository;
+import com.waa.lab4.logger.logger.domain.Logger;
+import com.waa.lab4.logger.logger.repository.LoggerRepository;
 import com.waa.lab4.user.domain.User;
 import com.waa.lab4.user.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
 @Service
 public class LoggerServiceImpl implements LoggerService{
@@ -26,7 +25,7 @@ public class LoggerServiceImpl implements LoggerService{
     }
 
     @Override
-    public void save(Logger logger) {
+    public void save(Logger logger) throws Exception {
         logger.setUser(modelMapper.map(userService.getById(Long.valueOf(2)), User.class));
         loggerRepository.save(logger);
     }

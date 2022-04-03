@@ -1,6 +1,7 @@
 package com.waa.lab4.user.controller;
 
 import com.waa.lab4.comment.domain.Comment;
+import com.waa.lab4.exception.domain.DataNotFoundException;
 import com.waa.lab4.post.domain.Post;
 import com.waa.lab4.user.domain.User;
 import com.waa.lab4.user.domain.dto.UserDto;
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getById(@PathVariable("id")Long id){
+    public ResponseEntity<UserDto> getById(@PathVariable("id")Long id) throws DataNotFoundException {
         return new ResponseEntity<>(userService.getById(id),HttpStatus.OK);
     }
 

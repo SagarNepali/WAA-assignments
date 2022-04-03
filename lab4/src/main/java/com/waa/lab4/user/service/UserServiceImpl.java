@@ -1,7 +1,9 @@
 package com.waa.lab4.user.service;
 
 import com.waa.lab4.comment.domain.Comment;
-import com.waa.lab4.logger.aspect.annotation.ExecutionTime;
+import com.waa.lab4.exception.domain.DataNotFoundException;
+import com.waa.lab4.logger.exception.aspect.annotation.LogException;
+import com.waa.lab4.logger.logger.aspect.annotation.ExecutionTime;
 import com.waa.lab4.post.domain.Post;
 import com.waa.lab4.user.domain.User;
 import com.waa.lab4.user.domain.dto.UserDto;
@@ -32,8 +34,14 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     @ExecutionTime
-    public UserDto getById(Long id) {
-        return modelMapper.map(userRepository.findById(id).orElse(null),UserDto.class);
+    @LogException
+    public UserDto getById(Long id) throws DataNotFoundException {
+        User user = userRepository.findById(id).orElse(null);
+        if(user == null){
+            throw new DataNotFoundException(String.format("Cannot find any User with id: %d",id));
+        }
+
+        return modelMapper.map(user,UserDto.class);
     }
 
     @Override

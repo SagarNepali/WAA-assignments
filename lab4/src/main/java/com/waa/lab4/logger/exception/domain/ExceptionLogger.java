@@ -1,27 +1,24 @@
-package com.waa.lab4.logger.domain;
+package com.waa.lab4.logger.exception.domain;
 
+import com.waa.lab4.logger.logger.domain.Logger;
 import com.waa.lab4.user.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
+@Table(name = "exception_log")
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Logger {
-
+@NoArgsConstructor
+@Builder
+public class ExceptionLogger{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
@@ -34,5 +31,8 @@ public class Logger {
     private User user;
 
     private String operation;
+    private String exceptionType;
+    @Column(name = "message")
+    private String exceptionMessage;
 
 }
