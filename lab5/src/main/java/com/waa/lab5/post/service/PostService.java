@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PostService {
 
-    void save(Post p);
+    void save(Post p,String userName);
     void update(long id,Post p);
     void delete(long id);
     Post getById(long id);

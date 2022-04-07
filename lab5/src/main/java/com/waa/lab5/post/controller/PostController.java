@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -49,8 +50,8 @@ public class PostController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void insert(@RequestBody Post p){
-        postService.save(p);
+    public void insert(@RequestBody Post p, Principal principal){
+        postService.save(p, principal.getName());
     }
 
     @PutMapping("/{id}")

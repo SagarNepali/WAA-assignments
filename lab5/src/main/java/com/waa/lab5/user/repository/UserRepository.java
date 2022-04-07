@@ -4,6 +4,7 @@ import com.waa.lab5.comment.domain.Comment;
 import com.waa.lab5.user.domain.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface UserRepository extends CrudRepository<User,Long> {
             "AND p.id =:postId")
     Comment findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
 
+    @Query("Select u from User u where u.userName=:userName")
+    User findByUserName(@Param("userName") String userName);
 }

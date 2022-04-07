@@ -3,10 +3,16 @@ package com.waa.lab5.post.service;
 import com.waa.lab5.post.domain.Post;
 import com.waa.lab5.post.domain.PostV2;
 import com.waa.lab5.post.repository.PostRepository;
+import com.waa.lab5.security.utils.jwt.service.JwtUserDetailsService;
+import com.waa.lab5.utils.user.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,6 +21,10 @@ import java.util.stream.Collectors;
 public class PostServiceImpl implements PostService{
 
     private PostRepository postRepository;
+
+    @Autowired
+    private UserService userService;
+
 
     @Autowired
     private ModelMapper modelMapper;
@@ -26,7 +36,9 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public void save(Post p) {
+    public void save(Post p,String userName) {
+
+        p.setUser(userService.findByUserName(userName));
         postRepository.save(p);
     }
 

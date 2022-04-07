@@ -18,4 +18,6 @@ public interface UserService {
     List<Post> findAllPostsByUserId(Long id);
     List<UserDto> findAllUsersHavingPostsGreaterThan(int val);
     Comment findByUserIdAndPostIdAndCommentId(Long userId, Long postId, Long commentId);
+
+    User findByUserName(String username);
 }
