@@ -4,7 +4,7 @@ import com.waa.lab5.post.domain.Post;
 import com.waa.lab5.post.domain.PostV2;
 import com.waa.lab5.post.repository.PostRepository;
 import com.waa.lab5.security.utils.jwt.service.JwtUserDetailsService;
-import com.waa.lab5.utils.user.service.UserService;
+import com.waa.lab5.user.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
