@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [postState, setPostState] = useState({
     title: "",
     author: "",
+    content: "Fixed Content",
   });
 
   const [postListState, setPostListState] = useState([
@@ -15,16 +16,19 @@ const Dashboard = () => {
       id: 1,
       title: "Spring",
       author: "Master Saap",
+      content: "Spring is a framework",
     },
     {
       id: 2,
       title: "Hibernate",
       author: "Toritilla",
+      content: "Its a ORM",
     },
     {
       id: 3,
       title: "React",
       author: "Bynens",
+      content: "JS Library",
     },
   ]);
 

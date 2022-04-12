@@ -4,8 +4,13 @@ import "./post.css";
 const Post = (props) => {
   const { post } = props;
 
+  const handleClick = (e, obj) => {
+    e.preventDefault();
+    console.log(obj);
+  };
+
   return (
-    <div className="post">
+    <div className="post" onClick={(e) => handleClick(e, post)}>
       ID: {post.id}
       <br />
       Title: {post.title}
