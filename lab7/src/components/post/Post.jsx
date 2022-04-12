@@ -6,6 +6,7 @@ const Post = (props) => {
 
   const handleClick = (e, obj) => {
     e.preventDefault();
+    console.log("Post details written on console while clicking the post");
     console.log(obj);
   };
 
