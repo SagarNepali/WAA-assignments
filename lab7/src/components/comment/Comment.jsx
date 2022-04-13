@@ -1,3 +1,4 @@
+import React from "react";
 import "./comment.css";
 
 const Comment = (props) => {
@@ -5,4 +6,4 @@ const Comment = (props) => {
   return <div className="comment">{props.comment}</div>;
 };
 
-export default Comment;
+export default React.memo(Comment);
