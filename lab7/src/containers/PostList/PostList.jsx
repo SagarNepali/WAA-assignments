@@ -7,9 +7,7 @@ const PostList = (props) => {
 
   const fetchPosts = () => {
     axios
-      .get("http://localhost:8080/api/v1/posts", {
-        headers: { "X-API-VERSION-2": true },
-      })
+      .get("http://localhost:8080/api/v1/posts")
       .then((response) => {
         setPostListState(response.data);
       })
