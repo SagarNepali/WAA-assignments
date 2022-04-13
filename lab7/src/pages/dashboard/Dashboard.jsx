@@ -1,65 +1,35 @@
 import React, { useState } from "react";
 import PostList from "../../containers/PostList/PostList";
-import NewPost from "../newPost/NewPost";
+import NewPost from "../../components/newPost/NewPost";
+import PostDetails from "../../components/postDetails/postDetails";
 
 const Dashboard = () => {
-  let idCounter = 4;
+  const [selectedIdState, setSelectedIdState] = useState(0);
 
-  const [postState, setPostState] = useState({
-    title: "",
-    author: "",
-    content: "Fixed Content",
-  });
+  const [reloadFlagState, setReloadFlagState] = useState(false);
 
-  const [postListState, setPostListState] = useState([
-    {
-      id: 1,
-      title: "Spring",
-      author: "Master Saap",
-      content: "Spring is a framework",
-    },
-    {
-      id: 2,
-      title: "Hibernate",
-      author: "Toritilla",
-      content: "Its a ORM",
-    },
-    {
-      id: 3,
-      title: "React",
-      author: "Bynens",
-      content: "JS Library",
-    },
-  ]);
-
-  const onPostChange = (event) => {
-    const objCopy = { ...postState };
-    objCopy[event.target.name] = event.target.value;
-    setPostState(objCopy);
+  const setSelectedId = (id) => {
+    setSelectedIdState(id);
   };
 
-  const addPost = () => {
-    const postStateCopy = { ...postState };
-    postStateCopy.id = idCounter;
-    console.log(idCounter);
-    idCounter++;
-    console.log(idCounter);
-    const copyPostListState = [...postListState];
-    copyPostListState.push(postStateCopy);
-    setPostListState(copyPostListState);
+  const setReloadFlag = () => {
+    setReloadFlagState(!reloadFlagState);
   };
 
   return (
     <div>
-      <PostList className="posts" posts={postListState} />
-      <NewPost
-        title={postState.title}
-        author={postState.author}
-        onPostChange={(event) => {
-          onPostChange(event);
-        }}
-        addPost={addPost}
-      />
+      <div className="post">
+        <PostList
+          setSelectedId={setSelectedId}
+          reloadFlagState={reloadFlagState}
+        />
+      </div>
+      <div>
+        <PostDetails id={selectedIdState} setReloadFlag={setReloadFlag} />
+      </div>
+      <div>
+        <NewPost setReloadFlag={setReloadFlag} />
+      </div>
     </div>
   );
 };

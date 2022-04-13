@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/posts")
+@CrossOrigin
 public class PostController {
 
     private PostService postService;
@@ -51,7 +52,7 @@ public class PostController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void insert(@RequestBody Post p, Principal principal){
-        postService.save(p, principal.getName());
+        postService.save(p, (principal!=null) ? principal.getName() : "user");
     }
 
     @PutMapping("/{id}")
