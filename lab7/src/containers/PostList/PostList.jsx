@@ -24,9 +24,7 @@ const PostList = (props) => {
         key={post.id}
         author={post.author}
         title={post.title}
-        setSelectedId={() => {
-          props.setSelectedId(post.id);
-        }}
+        id={post.id}
       />
     );
   });
