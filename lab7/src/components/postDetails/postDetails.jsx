@@ -1,23 +1,29 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Comment from "../comment/Comment";
 import "./postDetails.css";
 
 const PostDetails = (props) => {
+  const params = useParams();
+  const navigate = useNavigate();
+
   const [postDetail, setPostDetail] = useState({});
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/v1/posts/" + props.id)
-      .then((response) => {
-        setPostDetail(response.data);
-      })
-      .catch((err) => console.log(err));
-  }, [props.id]);
+    if (params.id) {
+      axios
+        .get("http://localhost:8080/api/v1/posts/" + params.id)
+        .then((response) => {
+          setPostDetail(response.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [params.id]);
 
   let postDetailsDisplay = null;
 
-  if (props.id != 0) {
+  if (params.id) {
     postDetailsDisplay = (
       <div className="PostDetail">
         <h1>Post Details</h1>
@@ -34,9 +40,7 @@ const PostDetails = (props) => {
         </div>
 
         <button>Edit</button>
-        <button onClick={() => deleteClickHandler(postDetail.id)}>
-          Delete
-        </button>
+        <button onClick={() => deleteClickHandler(params.id)}>Delete</button>
       </div>
     );
   }
@@ -47,7 +51,7 @@ const PostDetails = (props) => {
       .then((response) => {
         postDetailsDisplay = null;
         alert("Deleted successfully");
-        props.setReloadFlag();
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };

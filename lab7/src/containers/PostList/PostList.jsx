@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Post from "../../components/post/Post";
+import PostDetails from "../../components/postDetails/postDetails";
 
 const PostList = (props) => {
   const [postListState, setPostListState] = useState([]);
@@ -18,16 +20,25 @@ const PostList = (props) => {
     fetchPosts();
   }, [props.reloadFlagState]);
 
-  return postListState.map((post) => {
+  const postList = postListState.map((post) => {
     return (
-      <Post
-        key={post.id}
-        author={post.author}
-        title={post.title}
-        id={post.id}
-      />
+      <Link to={`${post.id}`} key={post.id}>
+        <Post
+          key={post.id}
+          author={post.author}
+          title={post.title}
+          id={post.id}
+        />
+      </Link>
     );
   });
+
+  return (
+    <React.Fragment>
+      <div className="post">{postList}</div>
+      <PostDetails />
+    </React.Fragment>
+  );
 };
 
 export default PostList;
