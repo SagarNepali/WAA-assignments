@@ -3,14 +3,8 @@ import { PostContext } from "../../contexts/PostContext";
 import "./post.css";
 
 const Post = (props) => {
-  const setSelectedId = useContext(PostContext);
   return (
-    <div
-      className="content"
-      onClick={() => {
-        setSelectedId(props.id);
-      }}
-    >
+    <div className="content">
       <h2>{props.title}</h2>
       <em>
         <br />

@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./newPost.css";
 
 const NewPost = (props) => {
   const newPostForm = useRef(null);
+  const navigate = useNavigate();
 
   const addPost = () => {
     axios
@@ -12,7 +14,7 @@ const NewPost = (props) => {
         author: newPostForm.current["author"].value,
       })
       .then((response) => {
-        props.setReloadFlag();
+        navigate("/posts");
       })
       .catch((error) => console.log(error));
   };
