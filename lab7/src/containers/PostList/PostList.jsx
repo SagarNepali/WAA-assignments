@@ -20,22 +20,22 @@ const PostList = (props) => {
     fetchPosts();
   }, [props.reloadFlagState]);
 
-  const postList = postListState.map((post) => {
-    return (
-      <Link to={`${post.id}`} key={post.id}>
-        <Post
-          key={post.id}
-          author={post.author}
-          title={post.title}
-          id={post.id}
-        />
-      </Link>
-    );
-  });
-
   return (
     <React.Fragment>
-      <div className="post">{postList}</div>
+      <div className="post">
+        {postListState.map((post) => {
+          return (
+            <Link to={`${post.id}`} key={post.id}>
+              <Post
+                key={post.id}
+                author={post.author}
+                title={post.title}
+                id={post.id}
+              />
+            </Link>
+          );
+        })}
+      </div>
       <PostDetails />
     </React.Fragment>
   );

@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import "./Login.css";
 const Login = () => {
   const login = useRef(null);
   const navigate = useNavigate();
+  const { setAuthUser } = useContext(AuthContext);
 
   const signIn = (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ const Login = () => {
       .post("http://localhost:8080/api/v1/authenticate/login", obj)
       .then((response) => {
         localStorage.setItem("accessToken", response.data.accessToken);
+        setAuthUser(obj);
         alert("Authentication success");
         navigate("/");
       })
